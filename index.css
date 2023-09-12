@@ -31,7 +31,7 @@ body {
   background-color:#5b626e;
 }
 
-svg, a, div, span{
+svg, a, span{
   overflow-y: hidden;
   overflow-x: hidden;
 }
