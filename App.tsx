@@ -45,6 +45,8 @@ export default function App() {
     return <FirebaseCMSApp
         name={"Blazed CMS System"}
         plugins={[dataEnhancementPlugin]}
+        logo="https://blazed.sirv.com/logo/Beaker-Dark.png"
+        logoDark="https://blazed.sirv.com/logo/Beaker-White.png"
         authentication={myAuthenticator}
         collections={[
             productsCollection, 
