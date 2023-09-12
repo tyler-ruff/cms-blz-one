@@ -13,10 +13,6 @@ body {
   margin: 0;
 }
 
-*{
-  overflow-x: hidden;
-}
-
 *::-webkit-scrollbar{
   width:10px;
 }
@@ -37,4 +33,5 @@ body {
 
 svg, a, div, span{
   overflow-y: hidden;
+  overflow-x: hidden;
 }
