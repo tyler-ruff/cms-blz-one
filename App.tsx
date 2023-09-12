@@ -11,6 +11,7 @@ import "@fontsource/ibm-plex-mono";
 import { firebaseConfig } from "./firebase-config.ts";
 import { productsCollection } from "./collections/products.tsx";
 import { catalogCollection } from "./collections/catalog.js";
+import { blogCollection } from "./collections/blog.js";
 
 export default function App() {
 
@@ -42,10 +43,14 @@ export default function App() {
     });
 
     return <FirebaseCMSApp
-        name={"My Online Shop"}
+        name={"Blazed CMS System"}
         plugins={[dataEnhancementPlugin]}
         authentication={myAuthenticator}
-        collections={[productsCollection, catalogCollection]}
+        collections={[
+            productsCollection, 
+            catalogCollection,
+            blogCollection
+        ]}
         firebaseConfig={firebaseConfig}
     />;
 }

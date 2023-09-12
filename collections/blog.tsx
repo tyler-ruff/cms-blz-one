@@ -1,20 +1,21 @@
 import { buildCollection, buildProperty, EntityReference } from "firecms";
 import { localeCollection } from "./locales.tsx";
 
-export type Product = {
+export type Post = {
     title: string,
-    subtitle: string,
+    description: string,
     tags: string[],
-    url: string,
     text: string,
+    categories: string[],
+    created_on: Date,
 }
 
-export const productsCollection = buildCollection<Product>({
-    name: "Products",
-    singularName: "Product",
-    path: "products",
-    icon: "LocalGroceryStore",
-    group: "E-commerce",
+export const blogCollection = buildCollection<Post>({
+    name: "Posts",
+    singularName: "Post",
+    path: "posts",
+    icon: "RssFeed",
+    group: "Blog",
     permissions: ({ authController, user }) => ({
         read: true,
         edit: true,
@@ -30,11 +31,6 @@ export const productsCollection = buildCollection<Product>({
             validation: { required: true },
             dataType: "string"
         },
-        subtitle: {
-            name: "Subtitle",
-            validation: { required: true },
-            dataType: "string"
-        },
         /*
         main_image: buildProperty({ // The `buildProperty` method is a utility function used for type checking
             name: "Image",
@@ -45,13 +41,11 @@ export const productsCollection = buildCollection<Product>({
             }
         }),
         */
-       /*
         text: {
             dataType: "string",
             name: "Text",
             markdown: true
         },
-        */
         tags: {
             name: "Tags",
             description: "Example of generic array",
@@ -61,7 +55,6 @@ export const productsCollection = buildCollection<Product>({
                 dataType: "string"
             }
         },
-        /*
         description: {
             name: "Description",
             description: "This is the description of the product",
@@ -86,6 +79,12 @@ export const productsCollection = buildCollection<Product>({
                 }
             }
         },
+        created_on: {
+            name: "Created on",
+            dataType: "date",
+            autoValue: "on_create"
+        },
+        /*
         publisher: {
             name: "Publisher",
             description: "This is an example of a map property",
@@ -111,11 +110,5 @@ export const productsCollection = buildCollection<Product>({
             dataType: "date"
         }
         */
-        url: {
-            name: "URL",
-            description: "The link to the product.",
-            validation: { required: true },
-            dataType: "string"
-        },
     }
 });

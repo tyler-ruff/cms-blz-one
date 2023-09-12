@@ -12,7 +12,7 @@ export const catalogCollection = buildCollection<Catalog>({
     name: "Publications",
     singularName: "Publication",
     path: "catalog",
-    icon: "LocalGroceryStore",
+    icon: "Book",
     group: "Publishing",
     permissions: ({ authController, user }) => ({
         read: true,
