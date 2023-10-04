@@ -16,12 +16,16 @@ export const blogCollection = buildCollection<Post>({
     path: "posts",
     icon: "RssFeed",
     group: "Blog",
-    permissions: ({ authController, user }) => ({
-        read: true,
-        edit: true,
-        create: true,
-        delete: true
-    }),
+    permissions: ({ authController, user }) => {
+        const isAdmin = authController.user?.email?.includes('@blazed.space');
+        //const isAdmin = true;
+        return ({
+            read: true,
+            edit: isAdmin,
+            create: isAdmin,
+            delete: isAdmin
+        })
+    },
     subcollections: [
         localeCollection
     ],

@@ -14,12 +14,15 @@ export const catalogCollection = buildCollection<Catalog>({
     path: "catalog",
     icon: "Book",
     group: "Publishing",
-    permissions: ({ authController, user }) => ({
-        read: true,
-        edit: true,
-        create: true,
-        delete: true
-    }),
+    permissions: ({ authController, user }) => {
+        const isAdmin = authController.user?.email?.includes('@blazed.space');
+        return ({
+            read: true,
+            edit: isAdmin,
+            create: isAdmin,
+            delete: isAdmin
+        })
+    },
     subcollections: [
         localeCollection
     ],

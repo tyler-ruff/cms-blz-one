@@ -5,8 +5,7 @@ export type Product = {
     title: string,
     subtitle: string,
     tags: string[],
-    url: string,
-    text: string,
+    url: string
 }
 
 export const productsCollection = buildCollection<Product>({
@@ -15,12 +14,15 @@ export const productsCollection = buildCollection<Product>({
     path: "products",
     icon: "LocalGroceryStore",
     group: "E-commerce",
-    permissions: ({ authController, user }) => ({
-        read: true,
-        edit: true,
-        create: true,
-        delete: true
-    }),
+    permissions: ({ authController, user }) => {
+        const isAdmin = authController.user?.email?.includes('@blazed.space');
+        return ({
+            read: true,
+            edit: isAdmin,
+            create: isAdmin,
+            delete: isAdmin
+        })
+    },
     subcollections: [
         localeCollection
     ],
