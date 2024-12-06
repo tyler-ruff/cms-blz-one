@@ -52,7 +52,7 @@ export const blogCollection = buildCollection<Post>({
         },
         tags: {
             name: "Tags",
-            description: "Example of generic array",
+            description: "Tags to help index the post.",
             validation: { required: true },
             dataType: "array",
             of: {

@@ -12,6 +12,7 @@ import { firebaseConfig } from "./firebase-config.ts";
 import { productsCollection } from "./collections/products.tsx";
 import { catalogCollection } from "./collections/catalog.js";
 import { blogCollection } from "./collections/blog.js";
+import { projectCollection } from "./collections/projects.tsx";
 
 export default function App() {
 
@@ -54,7 +55,8 @@ export default function App() {
         collections={[
             productsCollection, 
             catalogCollection,
-            blogCollection
+            blogCollection,
+            projectCollection
         ]}
         firebaseConfig={firebaseConfig}
     />;
