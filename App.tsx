@@ -13,6 +13,9 @@ import { productsCollection } from "./collections/products.tsx";
 import { catalogCollection } from "./collections/catalog.js";
 import { blogCollection } from "./collections/blog.js";
 import { projectCollection } from "./collections/projects.tsx";
+import { telephonesCollection } from "./collections/telephones.tsx";
+import { domainsCollection } from "./collections/domains.tsx";
+import { committeesCollection } from "./collections/committees.tsx";
 
 export default function App() {
 
@@ -56,7 +59,10 @@ export default function App() {
             productsCollection, 
             catalogCollection,
             blogCollection,
-            projectCollection
+            projectCollection,
+            domainsCollection,
+            telephonesCollection,
+            committeesCollection
         ]}
         firebaseConfig={firebaseConfig}
     />;
