@@ -34,8 +34,7 @@ export const telephonesCollection = buildCollection<Telephone>({
         number: {
             name: "Phone Number",
             validation: { 
-                required: true,
-                matches: "^\[+](\d{11})$" 
+                required: true
             },
             dataType: "string"
         },
