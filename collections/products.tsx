@@ -4,7 +4,11 @@ import { localeCollection } from "./locales.tsx";
 export type Product = {
     title: string,
     subtitle: string,
+    image: string,
+    price: number,
     tags: string[],
+    description: string,
+    categories: string[],
     url: string
 }
 
@@ -37,16 +41,27 @@ export const productsCollection = buildCollection<Product>({
             validation: { required: true },
             dataType: "string"
         },
-        /*
-        main_image: buildProperty({ // The `buildProperty` method is a utility function used for type checking
+        image: buildProperty({ // The `buildProperty` method is a utility function used for type checking
             name: "Image",
+            description: "Product image.",
             dataType: "string",
+            validation: { required: false },
             storage: {
-                storagePath: "images",
+                storagePath: "images/products",
                 acceptedFiles: ["image/*"]
             }
         }),
-        */
+        price: {
+            dataType: "number",
+            description: "Price of the product.",
+            validation: {
+                required: false,
+                moreThan: 0,
+                positive: true,
+                min: 0,
+                integer: false
+            }
+        },
        /*
         text: {
             dataType: "string",
@@ -56,19 +71,18 @@ export const productsCollection = buildCollection<Product>({
         */
         tags: {
             name: "Tags",
-            description: "Example of generic array",
+            description: "Tags help users find products by treating them like keywords.",
             validation: { required: true },
             dataType: "array",
             of: {
                 dataType: "string"
             }
         },
-        /*
         description: {
             name: "Description",
             description: "This is the description of the product",
             multiline: true,
-            longDescription: "Example of a long description hidden under a tooltip. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis bibendum turpis. Sed scelerisque ligula nec nisi pellentesque, eget viverra lorem facilisis. Praesent a lectus ac ipsum tincidunt posuere vitae non risus. In eu feugiat massa. Sed eu est non velit facilisis facilisis vitae eget ante. Nunc ut malesuada erat. Nullam sagittis bibendum porta. Maecenas vitae interdum sapien, ut aliquet risus. Donec aliquet, turpis finibus aliquet bibendum, tellus dui porttitor quam, quis pellentesque tellus libero non urna. Vestibulum maximus pharetra congue. Suspendisse aliquam congue quam, sed bibendum turpis. Aliquam eu enim ligula. Nam vel magna ut urna cursus sagittis. Suspendisse a nisi ac justo ornare tempor vel eu eros.",
+            longDescription: "Here you can explain the product, or if its an electronic, include its specs.",
             dataType: "string",
             columnWidth: 300
         },
@@ -81,13 +95,14 @@ export const productsCollection = buildCollection<Product>({
                 enumValues: {
                     electronics: "Electronics",
                     books: "Books",
-                    furniture: "Furniture",
+                    software: "Software",
                     clothing: "Clothing",
-                    food: "Food",
-                    footwear: "Footwear",
+                    accessories: "Accessories",
+                    other: "Other",
                 }
             }
         },
+        /*
         publisher: {
             name: "Publisher",
             description: "This is an example of a map property",

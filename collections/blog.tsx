@@ -4,6 +4,7 @@ import { localeCollection } from "./locales.tsx";
 export type Post = {
     title: string,
     description: string,
+    image: string,
     tags: string[],
     text: string,
     categories: string[],
@@ -45,6 +46,16 @@ export const blogCollection = buildCollection<Post>({
             }
         }),
         */
+        image: buildProperty({ // The `buildProperty` method is a utility function used for type checking
+            name: "Image",
+            description: "Blog cover image.",
+            dataType: "string",
+            validation: { required: false },
+            storage: {
+                storagePath: "images/blog",
+                acceptedFiles: ["image/*"]
+            }
+        }),
         text: {
             dataType: "string",
             name: "Text",
